@@ -24,19 +24,22 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void resultListener(SpeechRecognitionResult result) {
     print(result.recognizedWords);
+    setState(() {
+      text = result.recognizedWords;
+    });
   }
 
   void recordSpeech() async {
-    stt.SpeechToText speech = stt.SpeechToText();
-    bool available = await speech.initialize(
+    var speech = stt.SpeechToText();
+    var available = await speech.initialize(
       onStatus: statusListener,
       onError: errorListener,
     );
 
     if (available) {
-      speech.listen(onResult: resultListener);
+      await speech.listen(onResult: resultListener);
     } else {
-      print("The user has denied the use of speech recognition.");
+      print('The user has denied the use of speech recognition.');
     }
     Timer(Duration(seconds: 5), () {
       speech.stop();
@@ -44,7 +47,22 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    try {
+      recordSpeech();
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      color: Colors.white,
+      child: Center(
+        child: Text(text),
+      ),
+    );
   }
 }
