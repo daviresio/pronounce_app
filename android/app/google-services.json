@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "525925927465",
+    "project_id": "pronounce-311418",
+    "storage_bucket": "pronounce-311418.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:525925927465:android:720c66e44f9e1330b56a38",
+        "android_client_info": {
+          "package_name": "com.resio.pronounce_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "525925927465-lqn1h8gu490udr5fmkp78cnd2p7ed9bf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.resio.pronounce_app",
+            "certificate_hash": "c74a52511938d4220cabb99ab53efda02ee1d516"
+          }
+        },
+        {
+          "client_id": "525925927465-5d9v94butl8aivlj4ge2ioaerv3hqm7j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDor2kyy2JboFee4-iJJSA-k1r56iw9X8s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "525925927465-5d9v94butl8aivlj4ge2ioaerv3hqm7j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
