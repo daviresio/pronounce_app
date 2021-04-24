@@ -29,8 +29,17 @@ dependencies:
   dio: ^4.0.0
   freezed_annotation: ^0.14.1
   firebase_core: ^1.0.4
-  firebase_analytics: "^8.0.1"
-  firebase_crashlytics: "^2.0.1"
+  firebase_analytics: ^8.0.1
+  firebase_crashlytics: ^2.0.1
+  flutter_sound: ^8.1.1
+  firebase_performance: ^0.7.0+1
+  path_provider: ^2.0.1
+  permission_handler: ^7.0.0
+  path: ^1.8.0
+  uuid: ^3.0.4
+  audioplayers: ^0.18.3
+  flutter_audio_recorder: 
+    path: ../flutter_audio_recorder
   flutter:
     sdk: flutter
   flutter_localizations:
@@ -75,7 +84,10 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
+  fonts:
+    - family: PronounceIcons
+      fonts:
+        - asset: fonts/PronounceIcons.ttf    
   #   - family: Schyler
   #     fonts:
   #       - asset: fonts/Schyler-Regular.ttf
