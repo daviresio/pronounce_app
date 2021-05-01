@@ -26,34 +26,12 @@ class PronounceRecord {
     await recorder!.initialized;
     await recorder!.start();
     await recorder!.current(channel: 0);
-    // await _myRecorder!.startRecorder(
-    //   toFile: filePath,
-    //   codec: Codec.aacADTS,
-    // );
   }
 
-  Future<void> stopRecorder() async {
+  Future<String?> stopRecorder() async {
     await recorder!.stop();
-    // return _myRecorder!.stopRecorder();
+    var path = filePath;
+    filePath = null;
+    return path;
   }
 }
-
-
-
-
-  // FlutterSoundPlayer? _myPlayer;
-
-  // PronounceRecord() : _myPlayer = FlutterSoundPlayer();
-
-  // Future<FlutterSoundPlayer?> openAudioSession() {
-  //   return _myPlayer!.openAudioSession();
-  // }
-
-  // void dispose() {
-  //   _myPlayer!.closeAudioSession();
-  //   _myPlayer = null;
-  // }
-
-  // Future<void> play() async {
-
-  // }

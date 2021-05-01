@@ -22,7 +22,6 @@ environment:
 
 dependencies:
   speech_to_text: ^4.1.1-nullsafety
-  flutter_bloc: ^7.0.0
   pedantic: ^1.11.0
   flutter_hooks: ^0.16.0-nullsafety.0
   intl: ^0.17.0
@@ -38,6 +37,8 @@ dependencies:
   path: ^1.8.0
   uuid: ^3.0.4
   audioplayers: ^0.18.3
+  http: ^0.13.1
+  get: ^4.1.4
   flutter_audio_recorder: 
     path: ../flutter_audio_recorder
   flutter:
@@ -53,8 +54,15 @@ dependencies:
 dev_dependencies:
   freezed: ^0.14.1+1
   build_runner: ^1.12.2
+  flutter_launcher_icons: ^0.9.0
   flutter_test:
     sdk: flutter
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  remove_alpha_ios: true
+  image_path: "assets/icon/icon.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -87,7 +95,23 @@ flutter:
   fonts:
     - family: PronounceIcons
       fonts:
-        - asset: fonts/PronounceIcons.ttf    
+        - asset: assets/fonts/PronounceIcons.ttf    
+    - family: Nunito
+      fonts:
+        - asset: assets/fonts/Nunito/Nunito-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Nunito/Nunito-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Nunito/Nunito-Bold.ttf
+          weight: 700
+    - family: Montserrat
+      fonts:
+        - asset: assets/fonts/Montserrat/Montserrat-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Montserrat/Montserrat-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Montserrat/Montserrat-Bold.ttf
+          weight: 700
   #   - family: Schyler
   #     fonts:
   #       - asset: fonts/Schyler-Regular.ttf
