@@ -6,28 +6,43 @@ import 'package:pronounce_app/services/speech_service.dart';
 
 class DictionaryController extends GetxController {
   final _isRecording = false.obs;
+  final record = PronounceRecord();
+
+  @override
+  void onInit() async {
+    super.onInit();
+    await checkPermissions();
+    await record.openAudioSession();
+  }
+
+  @override
+  void dispose() {
+    record.dispose();
+    super.dispose();
+  }
 
   bool get isRecording => _isRecording.value;
   Future<void> setIsRecording([bool? value]) async {
     _isRecording.value = value ?? !isRecording;
-    // if (isRecording) {
-    //   await _record.record();
-    // } else {
-    //   await _record.stopRecorder();
-    //   var filePath = _record.filePath;
-    //   await SpeechService.speech(filePath: filePath!);
-    // }
+    if (isRecording) {
+      await record.record();
+    } else {
+      var filePath = await record.stopRecorder();
+      var result = await SpeechService.calculateScore(
+        filePath: filePath!,
+        referenceText: 'Do it all night, all summer',
+      );
+    }
   }
 
-  final _record = PronounceRecord();
-
   Future<void> checkPermissions() async {
-    if (!(await Permission.contacts.request().isGranted)) {
+    if (!(await Permission.microphone.request().isGranted) ||
+        !(await Permission.storage.request().isGranted)) {
       var statuses = await [
-        Permission.location,
+        Permission.microphone,
         Permission.storage,
       ].request();
-      print(statuses[Permission.location]);
+      print(statuses[Permission.microphone]);
     }
   }
 }

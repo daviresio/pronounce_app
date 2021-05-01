@@ -4,4 +4,5 @@ class PronounceSpacing {
   static const small3 = 14.0;
 
   static const medium1 = 20.0;
+  static const big1 = 30.0;
 }

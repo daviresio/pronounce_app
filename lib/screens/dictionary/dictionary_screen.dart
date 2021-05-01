@@ -15,16 +15,17 @@ class DictionaryScreen extends GetWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: PronounceColors.primaryColor1,
-      appBar: PronounceUI.appbar(
-        context,
-        title: AppLocalizations.of(context)!.dictionary,
-      ),
-      body: Obx(
-        () => PronounceRecording(
-          isRecording: controller.isRecording,
-          child: Padding(
+    return Obx(
+      () => PronounceRecording(
+        isRecording: controller.isRecording,
+        onFinish: () => controller.setIsRecording(false),
+        child: Scaffold(
+          backgroundColor: PronounceColors.primaryColor1,
+          appBar: PronounceUI.appbar(
+            context,
+            title: AppLocalizations.of(context)!.dictionary,
+          ),
+          body: Padding(
             padding: const EdgeInsets.all(PronounceSpacing.medium1),
             child: ListView(
               physics: ClampingScrollPhysics(),
@@ -32,6 +33,7 @@ class DictionaryScreen extends GetWidget {
                 Text(
                   AppLocalizations.of(context)!.whatDoYouWantSpeak,
                   style: Theme.of(context).textTheme.subtitle1,
+                  textAlign: TextAlign.center,
                 ),
                 SizedBox(height: PronounceSpacing.medium1),
                 Row(
@@ -84,7 +86,7 @@ class DictionaryScreen extends GetWidget {
       child: InkWell(
         onTap: onTap,
         child: Container(
-          height: 202,
+          height: 222,
           padding: const EdgeInsets.all(24.0),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10.0),
