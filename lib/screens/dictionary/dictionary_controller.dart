@@ -7,6 +7,7 @@ import 'package:pronounce_app/services/speech_service.dart';
 class DictionaryController extends GetxController {
   final _isRecording = false.obs;
   final record = PronounceRecord();
+  final _freeText = ''.obs;
 
   @override
   void onInit() async {
@@ -34,6 +35,9 @@ class DictionaryController extends GetxController {
       );
     }
   }
+
+  String get freeText => _freeText.value;
+  set freeText(String value) => _freeText.value = value;
 
   Future<void> checkPermissions() async {
     if (!(await Permission.microphone.request().isGranted) ||

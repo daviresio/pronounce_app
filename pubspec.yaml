@@ -40,8 +40,6 @@ dependencies:
   audioplayers: ^0.18.3
   http: ^0.13.1
   get: ^4.1.4
-  flutter_audio_recorder: 
-    path: ../flutter_audio_recorder
   flutter:
     sdk: flutter
   flutter_localizations:

@@ -293,13 +293,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_audio_recorder:
-    dependency: "direct main"
-    description:
-      path: "../flutter_audio_recorder"
-      relative: true
-    source: path
-    version: "0.5.5"
   flutter_hooks:
     dependency: "direct main"
     description:
