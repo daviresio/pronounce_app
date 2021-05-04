@@ -72,33 +72,40 @@ class DictionaryScreen extends GetWidget {
                   ],
                 ),
               ),
-              GestureDetector(
-                onTap: () {},
-                child: Container(
-                  color: PronounceColors.primaryColor1.withOpacity(0.8),
+              if (controller.freeText.isNotEmpty)
+                GestureDetector(
+                  onTap: controller.clearFreeText,
+                  child: Container(
+                    color: PronounceColors.primaryColor1.withOpacity(0.8),
+                  ),
                 ),
-              ),
               Positioned(
-                top: 35,
+                top: 40,
                 left: 0,
                 child: Column(
                   children: [
                     Container(
-                      height: 50,
                       width: MediaQuery.of(context).size.width -
                           (PronounceSpacing.medium1 * 2),
-                      margin: EdgeInsets.all(PronounceSpacing.medium1),
+                      margin: EdgeInsets.symmetric(
+                        horizontal: PronounceSpacing.medium1,
+                        vertical: PronounceSpacing.small1,
+                      ),
                       child: PronounceTextField(
+                        focusNode: controller.freeTextFocus,
                         placeholder: AppLocalizations.of(context)!
                             .writeTheSentenceYouWantToSay,
                         onChanged: (String value) =>
                             controller.freeText = value,
+                        controller: controller.freeTextCtl,
                       ),
                     ),
                     if (controller.freeText.isNotEmpty)
                       PronounceButton(
                         label: AppLocalizations.of(context)!.verify,
-                        onPressed: () {},
+                        width: MediaQuery.of(context).size.width -
+                            (PronounceSpacing.medium1 * 2),
+                        onPressed: controller.verifyWrittenWord,
                       ),
                   ],
                 ),

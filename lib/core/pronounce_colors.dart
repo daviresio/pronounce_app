@@ -15,6 +15,7 @@ class PronounceColors {
   static Color pink = Color(0xfffb41af);
   static Color orange = Color(0xfffeb84d);
   static Color green = Color(0xff2dda77);
+  static Color lightGray = Color(0xffeaeaea);
 
   static Color textPrimaryColor = white;
   static Color textSecundaryColor = primaryColor1;

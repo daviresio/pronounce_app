@@ -12,4 +12,11 @@ class PronounceUI {
       backgroundColor: PronounceColors.transparent,
     );
   }
+
+  static PreferredSize appBarCustomContent(context, {required Widget child}) {
+    return PreferredSize(
+      preferredSize: Size.fromHeight(40.0),
+      child: child,
+    );
+  }
 }

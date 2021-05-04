@@ -21,6 +21,8 @@ class PronounceIcons {
   static const _kFontFam = 'PronounceIcons';
   static const String? _kFontPkg = null;
 
+  static const IconData bookmark_solid = IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData language_light = IconData(0xe801, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData clock_light = IconData(0xe802, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData thumbs_up_light = IconData(0xe803, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData check_square_light = IconData(0xe804, fontFamily: _kFontFam, fontPackage: _kFontPkg);
@@ -66,4 +68,8 @@ class PronounceIcons {
   static const IconData microphone_light = IconData(0xe82c, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData history_light = IconData(0xe82d, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData books_light = IconData(0xe82e, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData bookmark_light_1 = IconData(0xe82f, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData volume_light = IconData(0xe830, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData volume_up_light = IconData(0xe831, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData assistive_listening_systems_light = IconData(0xe832, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }

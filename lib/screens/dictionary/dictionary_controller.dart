@@ -1,6 +1,9 @@
+import 'package:flutter/material.dart';
 import 'package:get/get_rx/get_rx.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:get/route_manager.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:pronounce_app/core/pronounce_routes.dart';
 import 'package:pronounce_app/helpers/pronounce_record.dart';
 import 'package:pronounce_app/services/speech_service.dart';
 
@@ -8,6 +11,8 @@ class DictionaryController extends GetxController {
   final _isRecording = false.obs;
   final record = PronounceRecord();
   final _freeText = ''.obs;
+  final freeTextCtl = TextEditingController();
+  final freeTextFocus = FocusNode();
 
   @override
   void onInit() async {
@@ -48,5 +53,16 @@ class DictionaryController extends GetxController {
       ].request();
       print(statuses[Permission.microphone]);
     }
+  }
+
+  void clearFreeText() {
+    freeText = freeTextCtl.text = '';
+    freeTextCtl.text = '';
+    freeTextFocus.unfocus();
+  }
+
+  void verifyWrittenWord() {
+    Get.toNamed(PronounceRoutes.pratice, arguments: {'text': freeText});
+    clearFreeText();
   }
 }
