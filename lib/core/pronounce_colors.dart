@@ -17,6 +17,11 @@ class PronounceColors {
   static Color green = Color(0xff2dda77);
   static Color lightGray = Color(0xffeaeaea);
 
+  static const warningLight = Color(0xFFFFF3CD);
+  static const warningDark = Color(0xFFFFBF00);
+  static const dangerLight = Color(0xffF8D7DA);
+  static const dangerDark = Color(0xFFFF4D5B);
+
   static Color textPrimaryColor = white;
   static Color textSecundaryColor = primaryColor1;
 

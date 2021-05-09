@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter_sound/flutter_sound.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:pronounce_app/helpers/pronounce_file.dart';
 
 class PronounceRecord {
@@ -8,6 +9,7 @@ class PronounceRecord {
   String? filePath;
 
   Future<void> openAudioSession() async {
+    await checkPermissions();
     await rec.openAudioSession();
   }
 
@@ -15,7 +17,7 @@ class PronounceRecord {
     rec.closeAudioSession();
   }
 
-  Future<void> record() async {
+  Future<void> startRecorder() async {
     filePath = (await PronounceFile.generateTempFilePath()) + '.wav';
     await rec.startRecorder(
       toFile: filePath!,
@@ -28,5 +30,16 @@ class PronounceRecord {
     var path = filePath;
     filePath = null;
     return path;
+  }
+
+  Future<void> checkPermissions() async {
+    if (!(await Permission.microphone.request().isGranted) ||
+        !(await Permission.storage.request().isGranted)) {
+      var statuses = await [
+        Permission.microphone,
+        Permission.storage,
+      ].request();
+      print(statuses[Permission.microphone]);
+    }
   }
 }

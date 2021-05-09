@@ -38,7 +38,9 @@ _$_AssessmentDetailModel _$_$_AssessmentDetailModelFromJson(
     fluencyScore: (json['FluencyScore'] as num).toDouble(),
     completenessScore: (json['CompletenessScore'] as num).toDouble(),
     pronScore: (json['PronScore'] as num).toDouble(),
-    words: json['Words'] as List<dynamic>,
+    words: (json['Words'] as List<dynamic>)
+        .map((e) => AssessmentWordModel.fromJson(e as Map<String, dynamic>))
+        .toList(),
   );
 }
 
@@ -64,7 +66,9 @@ _$_AssessmentWordModel _$_$_AssessmentWordModelFromJson(
     errorType: json['ErrorType'] as String,
     offset: json['Offset'] as int,
     duration: json['Duration'] as int,
-    phonemes: json['Phonemes'] as List<dynamic>,
+    phonemes: (json['Phonemes'] as List<dynamic>)
+        .map((e) => AssessmentPhonemeModel.fromJson(e as Map<String, dynamic>))
+        .toList(),
   );
 }
 
@@ -84,7 +88,6 @@ _$_AssessmentPhonemeModel _$_$_AssessmentPhonemeModelFromJson(
   return _$_AssessmentPhonemeModel(
     phoneme: json['Phoneme'] as String,
     accuracyScore: (json['AccuracyScore'] as num).toDouble(),
-    errorType: json['ErrorType'] as String,
     offset: json['Offset'] as int,
     duration: json['Duration'] as int,
   );
@@ -95,7 +98,6 @@ Map<String, dynamic> _$_$_AssessmentPhonemeModelToJson(
     <String, dynamic>{
       'Phoneme': instance.phoneme,
       'AccuracyScore': instance.accuracyScore,
-      'ErrorType': instance.errorType,
       'Offset': instance.offset,
       'Duration': instance.duration,
     };

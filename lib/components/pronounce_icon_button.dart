@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:pronounce_app/components/pronounce_ink_well.dart';
 import 'package:pronounce_app/core/pronouce_spacing.dart';
 import 'package:pronounce_app/core/pronounce_colors.dart';
-import 'package:pronounce_app/core/pronounce_ink_well.dart';
 import 'package:pronounce_app/core/pronounce_radius.dart';
 
 class PronounceIconButton extends StatelessWidget {
@@ -14,16 +14,18 @@ class PronounceIconButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        border: Border.all(color: PronounceColors.primaryColor1, width: 0.5),
+        color: PronounceColors.primaryColor4,
+        border: Border.all(color: PronounceColors.primaryColor1, width: 0.1),
         borderRadius: BorderRadius.circular(PronounceRadius.circular),
       ),
       child: PronounceInkWell(
-        radius: PronounceRadius.circular,
         padding: PronounceSpacing.small1,
+        radius: PronounceRadius.circular,
+        onTap: () {},
         child: Icon(
           icon,
           size: 20,
-          color: PronounceColors.primaryColor1,
+          color: PronounceColors.white,
         ),
       ),
     );

@@ -96,6 +96,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       onGenerateRoute: (RouteSettings settings) {
+        var arguments = settings.arguments as Map?;
         switch (settings.name) {
           case '/':
             return CupertinoPageRoute(
@@ -108,7 +109,8 @@ class MyApp extends StatelessWidget {
           case PronounceRoutes.pratice:
             return CupertinoPageRoute(
               builder: (_) => PraticeScreen(
-                text: (settings.arguments as Map)['text'],
+                text: arguments!['text'],
+                dictionaries: arguments['dictionaries'],
               ),
             );
           default:

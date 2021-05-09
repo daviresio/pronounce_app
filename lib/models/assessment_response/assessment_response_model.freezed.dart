@@ -263,7 +263,7 @@ class _$AssessmentDetailModelTearOff {
       required double fluencyScore,
       required double completenessScore,
       required double pronScore,
-      required List<dynamic> words}) {
+      required List<AssessmentWordModel> words}) {
     return _AssessmentDetailModel(
       lexical: lexical,
       iTN: iTN,
@@ -295,7 +295,7 @@ mixin _$AssessmentDetailModel {
   double get fluencyScore => throw _privateConstructorUsedError;
   double get completenessScore => throw _privateConstructorUsedError;
   double get pronScore => throw _privateConstructorUsedError;
-  List<dynamic> get words => throw _privateConstructorUsedError;
+  List<AssessmentWordModel> get words => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -317,7 +317,7 @@ abstract class $AssessmentDetailModelCopyWith<$Res> {
       double fluencyScore,
       double completenessScore,
       double pronScore,
-      List<dynamic> words});
+      List<AssessmentWordModel> words});
 }
 
 /// @nodoc
@@ -377,7 +377,7 @@ class _$AssessmentDetailModelCopyWithImpl<$Res>
       words: words == freezed
           ? _value.words
           : words // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as List<AssessmentWordModel>,
     ));
   }
 }
@@ -398,7 +398,7 @@ abstract class _$AssessmentDetailModelCopyWith<$Res>
       double fluencyScore,
       double completenessScore,
       double pronScore,
-      List<dynamic> words});
+      List<AssessmentWordModel> words});
 }
 
 /// @nodoc
@@ -460,7 +460,7 @@ class __$AssessmentDetailModelCopyWithImpl<$Res>
       words: words == freezed
           ? _value.words
           : words // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as List<AssessmentWordModel>,
     ));
   }
 }
@@ -500,7 +500,7 @@ class _$_AssessmentDetailModel implements _AssessmentDetailModel {
   @override
   final double pronScore;
   @override
-  final List<dynamic> words;
+  final List<AssessmentWordModel> words;
 
   @override
   String toString() {
@@ -573,7 +573,7 @@ abstract class _AssessmentDetailModel implements AssessmentDetailModel {
       required double fluencyScore,
       required double completenessScore,
       required double pronScore,
-      required List<dynamic> words}) = _$_AssessmentDetailModel;
+      required List<AssessmentWordModel> words}) = _$_AssessmentDetailModel;
 
   factory _AssessmentDetailModel.fromJson(Map<String, dynamic> json) =
       _$_AssessmentDetailModel.fromJson;
@@ -595,7 +595,7 @@ abstract class _AssessmentDetailModel implements AssessmentDetailModel {
   @override
   double get pronScore => throw _privateConstructorUsedError;
   @override
-  List<dynamic> get words => throw _privateConstructorUsedError;
+  List<AssessmentWordModel> get words => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$AssessmentDetailModelCopyWith<_AssessmentDetailModel> get copyWith =>
@@ -616,7 +616,7 @@ class _$AssessmentWordModelTearOff {
       required String errorType,
       required int offset,
       required int duration,
-      required List<dynamic> phonemes}) {
+      required List<AssessmentPhonemeModel> phonemes}) {
     return _AssessmentWordModel(
       word: word,
       accuracyScore: accuracyScore,
@@ -642,7 +642,8 @@ mixin _$AssessmentWordModel {
   String get errorType => throw _privateConstructorUsedError;
   int get offset => throw _privateConstructorUsedError;
   int get duration => throw _privateConstructorUsedError;
-  List<dynamic> get phonemes => throw _privateConstructorUsedError;
+  List<AssessmentPhonemeModel> get phonemes =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -661,7 +662,7 @@ abstract class $AssessmentWordModelCopyWith<$Res> {
       String errorType,
       int offset,
       int duration,
-      List<dynamic> phonemes});
+      List<AssessmentPhonemeModel> phonemes});
 }
 
 /// @nodoc
@@ -706,7 +707,7 @@ class _$AssessmentWordModelCopyWithImpl<$Res>
       phonemes: phonemes == freezed
           ? _value.phonemes
           : phonemes // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as List<AssessmentPhonemeModel>,
     ));
   }
 }
@@ -724,7 +725,7 @@ abstract class _$AssessmentWordModelCopyWith<$Res>
       String errorType,
       int offset,
       int duration,
-      List<dynamic> phonemes});
+      List<AssessmentPhonemeModel> phonemes});
 }
 
 /// @nodoc
@@ -771,7 +772,7 @@ class __$AssessmentWordModelCopyWithImpl<$Res>
       phonemes: phonemes == freezed
           ? _value.phonemes
           : phonemes // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as List<AssessmentPhonemeModel>,
     ));
   }
 }
@@ -802,7 +803,7 @@ class _$_AssessmentWordModel implements _AssessmentWordModel {
   @override
   final int duration;
   @override
-  final List<dynamic> phonemes;
+  final List<AssessmentPhonemeModel> phonemes;
 
   @override
   String toString() {
@@ -860,7 +861,7 @@ abstract class _AssessmentWordModel implements AssessmentWordModel {
       required String errorType,
       required int offset,
       required int duration,
-      required List<dynamic> phonemes}) = _$_AssessmentWordModel;
+      required List<AssessmentPhonemeModel> phonemes}) = _$_AssessmentWordModel;
 
   factory _AssessmentWordModel.fromJson(Map<String, dynamic> json) =
       _$_AssessmentWordModel.fromJson;
@@ -876,7 +877,8 @@ abstract class _AssessmentWordModel implements AssessmentWordModel {
   @override
   int get duration => throw _privateConstructorUsedError;
   @override
-  List<dynamic> get phonemes => throw _privateConstructorUsedError;
+  List<AssessmentPhonemeModel> get phonemes =>
+      throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$AssessmentWordModelCopyWith<_AssessmentWordModel> get copyWith =>
@@ -895,13 +897,11 @@ class _$AssessmentPhonemeModelTearOff {
   _AssessmentPhonemeModel call(
       {required String phoneme,
       required double accuracyScore,
-      required String errorType,
       required int offset,
       required int duration}) {
     return _AssessmentPhonemeModel(
       phoneme: phoneme,
       accuracyScore: accuracyScore,
-      errorType: errorType,
       offset: offset,
       duration: duration,
     );
@@ -919,7 +919,6 @@ const $AssessmentPhonemeModel = _$AssessmentPhonemeModelTearOff();
 mixin _$AssessmentPhonemeModel {
   String get phoneme => throw _privateConstructorUsedError;
   double get accuracyScore => throw _privateConstructorUsedError;
-  String get errorType => throw _privateConstructorUsedError;
   int get offset => throw _privateConstructorUsedError;
   int get duration => throw _privateConstructorUsedError;
 
@@ -934,12 +933,7 @@ abstract class $AssessmentPhonemeModelCopyWith<$Res> {
   factory $AssessmentPhonemeModelCopyWith(AssessmentPhonemeModel value,
           $Res Function(AssessmentPhonemeModel) then) =
       _$AssessmentPhonemeModelCopyWithImpl<$Res>;
-  $Res call(
-      {String phoneme,
-      double accuracyScore,
-      String errorType,
-      int offset,
-      int duration});
+  $Res call({String phoneme, double accuracyScore, int offset, int duration});
 }
 
 /// @nodoc
@@ -955,7 +949,6 @@ class _$AssessmentPhonemeModelCopyWithImpl<$Res>
   $Res call({
     Object? phoneme = freezed,
     Object? accuracyScore = freezed,
-    Object? errorType = freezed,
     Object? offset = freezed,
     Object? duration = freezed,
   }) {
@@ -968,10 +961,6 @@ class _$AssessmentPhonemeModelCopyWithImpl<$Res>
           ? _value.accuracyScore
           : accuracyScore // ignore: cast_nullable_to_non_nullable
               as double,
-      errorType: errorType == freezed
-          ? _value.errorType
-          : errorType // ignore: cast_nullable_to_non_nullable
-              as String,
       offset: offset == freezed
           ? _value.offset
           : offset // ignore: cast_nullable_to_non_nullable
@@ -991,12 +980,7 @@ abstract class _$AssessmentPhonemeModelCopyWith<$Res>
           $Res Function(_AssessmentPhonemeModel) then) =
       __$AssessmentPhonemeModelCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {String phoneme,
-      double accuracyScore,
-      String errorType,
-      int offset,
-      int duration});
+  $Res call({String phoneme, double accuracyScore, int offset, int duration});
 }
 
 /// @nodoc
@@ -1014,7 +998,6 @@ class __$AssessmentPhonemeModelCopyWithImpl<$Res>
   $Res call({
     Object? phoneme = freezed,
     Object? accuracyScore = freezed,
-    Object? errorType = freezed,
     Object? offset = freezed,
     Object? duration = freezed,
   }) {
@@ -1027,10 +1010,6 @@ class __$AssessmentPhonemeModelCopyWithImpl<$Res>
           ? _value.accuracyScore
           : accuracyScore // ignore: cast_nullable_to_non_nullable
               as double,
-      errorType: errorType == freezed
-          ? _value.errorType
-          : errorType // ignore: cast_nullable_to_non_nullable
-              as String,
       offset: offset == freezed
           ? _value.offset
           : offset // ignore: cast_nullable_to_non_nullable
@@ -1050,7 +1029,6 @@ class _$_AssessmentPhonemeModel implements _AssessmentPhonemeModel {
   _$_AssessmentPhonemeModel(
       {required this.phoneme,
       required this.accuracyScore,
-      required this.errorType,
       required this.offset,
       required this.duration});
 
@@ -1062,15 +1040,13 @@ class _$_AssessmentPhonemeModel implements _AssessmentPhonemeModel {
   @override
   final double accuracyScore;
   @override
-  final String errorType;
-  @override
   final int offset;
   @override
   final int duration;
 
   @override
   String toString() {
-    return 'AssessmentPhonemeModel(phoneme: $phoneme, accuracyScore: $accuracyScore, errorType: $errorType, offset: $offset, duration: $duration)';
+    return 'AssessmentPhonemeModel(phoneme: $phoneme, accuracyScore: $accuracyScore, offset: $offset, duration: $duration)';
   }
 
   @override
@@ -1083,9 +1059,6 @@ class _$_AssessmentPhonemeModel implements _AssessmentPhonemeModel {
             (identical(other.accuracyScore, accuracyScore) ||
                 const DeepCollectionEquality()
                     .equals(other.accuracyScore, accuracyScore)) &&
-            (identical(other.errorType, errorType) ||
-                const DeepCollectionEquality()
-                    .equals(other.errorType, errorType)) &&
             (identical(other.offset, offset) ||
                 const DeepCollectionEquality().equals(other.offset, offset)) &&
             (identical(other.duration, duration) ||
@@ -1098,7 +1071,6 @@ class _$_AssessmentPhonemeModel implements _AssessmentPhonemeModel {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(phoneme) ^
       const DeepCollectionEquality().hash(accuracyScore) ^
-      const DeepCollectionEquality().hash(errorType) ^
       const DeepCollectionEquality().hash(offset) ^
       const DeepCollectionEquality().hash(duration);
 
@@ -1118,7 +1090,6 @@ abstract class _AssessmentPhonemeModel implements AssessmentPhonemeModel {
   factory _AssessmentPhonemeModel(
       {required String phoneme,
       required double accuracyScore,
-      required String errorType,
       required int offset,
       required int duration}) = _$_AssessmentPhonemeModel;
 
@@ -1129,8 +1100,6 @@ abstract class _AssessmentPhonemeModel implements AssessmentPhonemeModel {
   String get phoneme => throw _privateConstructorUsedError;
   @override
   double get accuracyScore => throw _privateConstructorUsedError;
-  @override
-  String get errorType => throw _privateConstructorUsedError;
   @override
   int get offset => throw _privateConstructorUsedError;
   @override

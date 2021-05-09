@@ -1,7 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
-import 'package:pronounce_app/models/assessment_response_model.dart';
+import 'package:pronounce_app/core/pronounce_error.dart';
+import 'package:pronounce_app/models/assessment_response/assessment_response_model.dart';
 
 class SpeechService {
   static Future<AssessmentResponseModel?> calculateScore({
@@ -17,7 +18,7 @@ class SpeechService {
       'GradingSystem': 'HundredMark',
       'Granularity': 'Phoneme',
       'Dimension': 'Comprehensive',
-      'EnableMiscue': 'False',
+      'EnableMiscue': 'True',
       // 'ScenarioId': '',
     };
 
@@ -33,11 +34,11 @@ class SpeechService {
     try {
       var response = await http.post(url,
           body: File(filePath).readAsBytesSync(), headers: headers);
-      var responseData =
-          AssessmentResponseModel.fromJson(jsonDecode(response.body));
+      var jsonResponse = jsonDecode(response.body);
+      var responseData = AssessmentResponseModel.fromJson(jsonResponse);
       return responseData;
-    } catch (e) {
-      print(e);
+    } catch (e, s) {
+      PronounceError.recordError(e, s);
       return null;
     }
   }

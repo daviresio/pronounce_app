@@ -8,5 +8,8 @@
     "convertTheImageToTextAndPronounceThePhrases": "Converta a imagem em texto e pronuncie as frases",
     "frequentSearches": "Pesquisas frequentes",
     "writeSentenceYouWantSay": "Escreva a frase que você quer dizer",
-    "verify": "Verificar"
+    "verify": "Verificar",
+    "loading": "Carregando",
+    "aErrorHappen": "Um erro ocorreu, por favor verifique a sua conexão e tente novamente",
+    "textContainsMisspellings": "Texto contém erros ortográficos"
 }

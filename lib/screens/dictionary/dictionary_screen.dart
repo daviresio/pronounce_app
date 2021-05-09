@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:pronounce_app/components/pronounce_button.dart';
+import 'package:pronounce_app/components/pronounce_loader.dart';
+import 'package:pronounce_app/components/pronounce_snackbar.dart';
 import 'package:pronounce_app/screens/dictionary/components/pronounce_recording.dart';
 import 'package:pronounce_app/components/pronounce_text_field.dart';
 import 'package:pronounce_app/components/pronounce_ui.dart';
@@ -19,98 +21,119 @@ class DictionaryScreen extends GetWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(
-      () => PronounceRecording(
-        isRecording: controller.isRecording,
-        onFinish: () => controller.setIsRecording(false),
-        child: Scaffold(
-          backgroundColor: PronounceColors.primaryColor1,
-          appBar: PronounceUI.appbar(
-            context,
-            title: AppLocalizations.of(context)!.dictionary,
-          ),
-          body: Stack(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(PronounceSpacing.medium1),
-                child: ListView(
-                  physics: ClampingScrollPhysics(),
-                  children: [
-                    Text(
-                      AppLocalizations.of(context)!.whatDoYouWantSpeak,
-                      style: Theme.of(context).textTheme.subtitle1,
-                    ),
-                    SizedBox(height: 80),
-                    Row(
-                      children: [
-                        _box(
-                          context,
-                          title: AppLocalizations.of(context)!.speak,
-                          description: AppLocalizations.of(context)!
-                              .pronounceYourPhraseToCheckYourScore,
-                          icon: PronounceIcons.microphone_light,
-                          onTap: controller.setIsRecording,
-                          colorBottom: controller.isRecording
-                              ? Colors.red
-                              : PronounceColors.blueMedium,
-                          colorTop: controller.isRecording
-                              ? Colors.red
-                              : PronounceColors.blueLight,
-                        ),
-                        SizedBox(width: 16),
-                        _box(
-                          context,
-                          title: AppLocalizations.of(context)!.scanImage,
-                          description: AppLocalizations.of(context)!
-                              .convertTheImageToTextAndPronounceThePhrases,
-                          icon: PronounceIcons.image_light,
-                          onTap: () {},
-                          colorBottom: PronounceColors.pink,
-                          colorTop: PronounceColors.orange,
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              if (controller.freeText.isNotEmpty)
-                GestureDetector(
-                  onTap: controller.clearFreeText,
-                  child: Container(
-                    color: PronounceColors.primaryColor1.withOpacity(0.8),
+      () => PronounceLoader(
+        isLoading: controller.isLoading,
+        child: PronounceRecording(
+          isRecording: controller.isRecording,
+          onFinish: () => controller.setIsRecording(false),
+          child: Scaffold(
+            backgroundColor: PronounceColors.primaryColor1,
+            appBar: PronounceUI.appbar(
+              context,
+              title: AppLocalizations.of(context)!.dictionary,
+            ),
+            body: Stack(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(PronounceSpacing.medium1),
+                  child: ListView(
+                    physics: ClampingScrollPhysics(),
+                    children: [
+                      Text(
+                        AppLocalizations.of(context)!.whatDoYouWantSpeak,
+                        style: Theme.of(context).textTheme.subtitle1,
+                      ),
+                      SizedBox(height: 80),
+                      Row(
+                        children: [
+                          _box(
+                            context,
+                            title: AppLocalizations.of(context)!.speak,
+                            description: AppLocalizations.of(context)!
+                                .pronounceYourPhraseToCheckYourScore,
+                            icon: PronounceIcons.microphone_light,
+                            onTap: controller.setIsRecording,
+                            colorBottom: controller.isRecording
+                                ? Colors.red
+                                : PronounceColors.blueMedium,
+                            colorTop: controller.isRecording
+                                ? Colors.red
+                                : PronounceColors.blueLight,
+                          ),
+                          SizedBox(width: 16),
+                          _box(
+                            context,
+                            title: AppLocalizations.of(context)!.scanImage,
+                            description: AppLocalizations.of(context)!
+                                .convertTheImageToTextAndPronounceThePhrases,
+                            icon: PronounceIcons.image_light,
+                            onTap: () {},
+                            colorBottom: PronounceColors.pink,
+                            colorTop: PronounceColors.orange,
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
-              Positioned(
-                top: 40,
-                left: 0,
-                child: Column(
-                  children: [
-                    Container(
-                      width: MediaQuery.of(context).size.width -
-                          (PronounceSpacing.medium1 * 2),
-                      margin: EdgeInsets.symmetric(
-                        horizontal: PronounceSpacing.medium1,
-                        vertical: PronounceSpacing.small1,
-                      ),
-                      child: PronounceTextField(
-                        focusNode: controller.freeTextFocus,
-                        placeholder: AppLocalizations.of(context)!
-                            .writeTheSentenceYouWantToSay,
-                        onChanged: (String value) =>
-                            controller.freeText = value,
-                        controller: controller.freeTextCtl,
-                      ),
+                if (controller.freeText.isNotEmpty)
+                  GestureDetector(
+                    onTap: controller.clearFreeText,
+                    child: Container(
+                      color: PronounceColors.primaryColor1.withOpacity(0.8),
                     ),
-                    if (controller.freeText.isNotEmpty)
-                      PronounceButton(
-                        label: AppLocalizations.of(context)!.verify,
+                  ),
+                Positioned(
+                  top: 40,
+                  left: 0,
+                  child: Column(
+                    children: [
+                      Container(
                         width: MediaQuery.of(context).size.width -
                             (PronounceSpacing.medium1 * 2),
-                        onPressed: controller.verifyWrittenWord,
+                        margin: EdgeInsets.symmetric(
+                          horizontal: PronounceSpacing.medium1,
+                          vertical: PronounceSpacing.small1,
+                        ),
+                        child: PronounceTextField(
+                          focusNode: controller.freeTextFocus,
+                          placeholder: AppLocalizations.of(context)!
+                              .writeTheSentenceYouWantToSay,
+                          onChanged: (String value) =>
+                              controller.freeText = value,
+                          controller: controller.freeTextCtl,
+                        ),
                       ),
-                  ],
+                      if (controller.freeText.isNotEmpty)
+                        PronounceButton(
+                          label: AppLocalizations.of(context)!.verify,
+                          width: MediaQuery.of(context).size.width -
+                              (PronounceSpacing.medium1 * 2),
+                          onPressed: () async {
+                            var result = await controller.verifyWrittenWord();
+
+                            if (result == null) {
+                              PronounceSnackbar.show(
+                                text:
+                                    AppLocalizations.of(context)!.aErrorHappen,
+                                status: PronounceSnackBarStatus.error,
+                                context: context,
+                              );
+                            } else if (!result) {
+                              PronounceSnackbar.show(
+                                text: AppLocalizations.of(context)!
+                                    .textContainsMisspellings,
+                                status: PronounceSnackBarStatus.warning,
+                                context: context,
+                              );
+                            }
+                          },
+                        ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

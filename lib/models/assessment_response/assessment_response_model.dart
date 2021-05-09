@@ -29,7 +29,7 @@ class AssessmentDetailModel with _$AssessmentDetailModel {
     required double fluencyScore,
     required double completenessScore,
     required double pronScore,
-    required List<dynamic> words,
+    required List<AssessmentWordModel> words,
   }) = _AssessmentDetailModel;
 
   factory AssessmentDetailModel.fromJson(Map<String, dynamic> json) =>
@@ -45,7 +45,7 @@ class AssessmentWordModel with _$AssessmentWordModel {
     required String errorType,
     required int offset,
     required int duration,
-    required List<dynamic> phonemes,
+    required List<AssessmentPhonemeModel> phonemes,
   }) = _AssessmentWordModel;
 
   factory AssessmentWordModel.fromJson(Map<String, dynamic> json) =>
@@ -58,7 +58,6 @@ class AssessmentPhonemeModel with _$AssessmentPhonemeModel {
   factory AssessmentPhonemeModel({
     required String phoneme,
     required double accuracyScore,
-    required String errorType,
     required int offset,
     required int duration,
   }) = _AssessmentPhonemeModel;

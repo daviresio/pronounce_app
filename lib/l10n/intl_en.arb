@@ -8,5 +8,8 @@
     "convertTheImageToTextAndPronounceThePhrases": "Convert the image to text and pronounce the phrases",
     "frequentSearches": "Frequent searches",
     "writeSentenceYouWantSay": "Write the sentence you want to say",
-    "verify": "Verify"
+    "verify": "Verify",
+    "loading": "Loading",
+    "aErrorHappen": "An error has occurred, please check your connection and try again",
+    "textContainsMisspellings": "Text contains misspellings"
 }
