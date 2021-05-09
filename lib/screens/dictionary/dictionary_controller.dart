@@ -71,10 +71,17 @@ class DictionaryController extends GetxController {
       return false;
     }
 
+    var audioBytes = await SpeechService.textToSpeech(text: freeText);
+
+    if (audioBytes == null) {
+      return null;
+    }
+
     unawaited(
       Get.toNamed(PronounceRoutes.pratice, arguments: {
         'text': freeText,
-        'dictionaries': results,
+        'dictionaries': results.map((e) => e!).toList(),
+        'audioBytes': audioBytes,
       }),
     );
 

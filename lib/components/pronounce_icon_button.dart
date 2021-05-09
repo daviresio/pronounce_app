@@ -21,7 +21,7 @@ class PronounceIconButton extends StatelessWidget {
       child: PronounceInkWell(
         padding: PronounceSpacing.small1,
         radius: PronounceRadius.circular,
-        onTap: () {},
+        onTap: onTap,
         child: Icon(
           icon,
           size: 20,

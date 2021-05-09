@@ -111,6 +111,7 @@ class MyApp extends StatelessWidget {
               builder: (_) => PraticeScreen(
                 text: arguments!['text'],
                 dictionaries: arguments['dictionaries'],
+                audioBytes: arguments['audioBytes'],
               ),
             );
           default:

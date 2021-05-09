@@ -8,6 +8,7 @@ class PronounceColors {
   static Color primaryColor5 = Color(0xff615f85);
 
   static Color white = Colors.white;
+  static Color black = Colors.black;
   static Color transparent = Colors.transparent;
 
   static Color blueMedium = Color(0xff4f60ff);
