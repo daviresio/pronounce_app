@@ -11,5 +11,15 @@
     "verify": "Verificar",
     "loading": "Carregando",
     "aErrorHappen": "Um erro ocorreu, por favor verifique a sua conexão e tente novamente",
-    "textContainsMisspellings": "Texto contém erros ortográficos"
+    "textContainsMisspellings": "Texto contém erros ortográficos",
+    "tryAgain": "Try again",
+    "youSoundLikeANative": "você soa REPLACE como um nativo",
+    "clickOnEachWord": "Clique em cada uma das palavras para receber um feedback detalhado",
+    "tryANewWord": "Experimente uma nova palavra",
+    "seeHowOtherPeoplePronounce": "Veja como outras pessoas pronunciam",
+    "speakNow": "Fale agora",
+    "youReadTheWholeSentence": "Você leu a frase inteira",
+    "pleaseWait": "Por favor, aguarde",
+    "almostCorrect": "Quase correto",
+    "great": "Excelente"
 }

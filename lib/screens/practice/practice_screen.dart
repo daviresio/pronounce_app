@@ -2,16 +2,19 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:pronounce_app/components/pronounce_icon_button.dart';
 import 'package:pronounce_app/components/pronounce_loader.dart';
 import 'package:pronounce_app/components/pronounce_ui.dart';
 import 'package:pronounce_app/components/speech_button.dart';
 import 'package:pronounce_app/core/pronouce_spacing.dart';
 import 'package:pronounce_app/core/pronounce_colors.dart';
+import 'package:pronounce_app/core/pronounce_enums.dart';
 import 'package:pronounce_app/core/pronounce_icons.dart';
 import 'package:pronounce_app/core/pronounce_radius.dart';
 import 'package:pronounce_app/helpers/pronounce_text.dart';
 import 'package:pronounce_app/models/dictionary/dictionary_model.dart';
+import 'package:pronounce_app/screens/practice/components/result_modal.dart';
 import 'package:pronounce_app/screens/practice/pratice_controller.dart';
 
 class PraticeScreen extends StatelessWidget {
@@ -60,11 +63,18 @@ class PraticeScreen extends StatelessWidget {
                   children: [
                     Container(
                       alignment: Alignment.centerLeft,
-                      margin: EdgeInsets.only(bottom: PronounceSpacing.medium1),
+                      margin: EdgeInsets.only(bottom: PronounceSpacing.small1),
                       child: Text(
                         text,
                         style: Theme.of(context).textTheme.headline2!.copyWith(
                             color: PronounceColors.textSecundaryColor),
+                      ),
+                    ),
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      margin: EdgeInsets.only(bottom: PronounceSpacing.small1),
+                      child: Text(
+                        '/${controller.ipaPhonemes}/',
                       ),
                     ),
                     Container(
@@ -125,9 +135,17 @@ class PraticeScreen extends StatelessWidget {
                   child: Obx(
                     () => SpeechButton(
                       isRecording: controller.isRecording,
-                      onTap: () {
+                      onTap: () async {
                         if (controller.isRecording) {
                           controller.stopRecorder();
+                          await showCupertinoModalBottomSheet(
+                            context: context,
+                            isDismissible: false,
+                            builder: (context) => ResultModal(
+                              speechScore: SpeechScore.bad,
+                              value: 12,
+                            ),
+                          );
                         } else {
                           controller.startRecord();
                         }

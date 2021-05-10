@@ -11,5 +11,15 @@
     "verify": "Verify",
     "loading": "Loading",
     "aErrorHappen": "An error has occurred, please check your connection and try again",
-    "textContainsMisspellings": "Text contains misspellings"
+    "textContainsMisspellings": "Text contains misspellings",
+    "tryAgain": "Try again",
+    "youSoundLikeANative": "you sound REPLACE like a native",
+    "clickOnEachWord": "Click on each word to receive detailed feedback",
+    "tryANewWord": "Try a new word",
+    "seeHowOtherPeoplePronounce": "See how other people pronounce",
+    "speakNow": "Speak now",
+    "youReadTheWholeSentence": "You read the whole sentence",
+    "pleaseWait": "Please wait",
+    "almostCorrect": "Almost correct",
+    "great": "Great"
 }

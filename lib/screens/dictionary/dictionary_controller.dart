@@ -10,31 +10,18 @@ import 'package:pronounce_app/services/speech_service.dart';
 
 class DictionaryController extends GetxController {
   final _isRecording = false.obs;
-  final record = PronounceRecord();
   final _freeText = ''.obs;
   final freeTextCtl = TextEditingController();
   final freeTextFocus = FocusNode();
   final _isLoading = false.obs;
 
-  @override
-  void onInit() async {
-    super.onInit();
-    // await record.openAudioSession();
-  }
-
-  @override
-  void dispose() {
-    record.dispose();
-    super.dispose();
-  }
-
   bool get isRecording => _isRecording.value;
   Future<void> setIsRecording([bool? value]) async {
     _isRecording.value = value ?? !isRecording;
     if (isRecording) {
-      await record.startRecorder();
+      await PronounceRecord.startRecorder();
     } else {
-      var filePath = await record.stopRecorder();
+      var filePath = await PronounceRecord.stopRecorder();
       // ignore: unused_local_variable
       var result = await SpeechService.calculateScore(
         filePath: filePath!,

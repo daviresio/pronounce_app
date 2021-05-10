@@ -32,7 +32,7 @@ class PronounceLoader extends StatelessWidget {
                   decoration: BoxDecoration(
                       color: PronounceColors.white,
                       borderRadius:
-                          BorderRadius.circular(PronounceRadius.normal),
+                          BorderRadius.circular(PronounceRadius.medium),
                       boxShadow: [
                         PronounceElevations.elevation5,
                       ]),

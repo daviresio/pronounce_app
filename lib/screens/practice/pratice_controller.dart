@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:get/get.dart';
+import 'package:pronounce_app/core/pronounce_error.dart';
 import 'package:pronounce_app/helpers/pronounce_player.dart';
 import 'package:pronounce_app/helpers/pronounce_record.dart';
 import 'package:pronounce_app/models/assessment_response/assessment_response_model.dart';
@@ -10,6 +11,7 @@ import 'package:pronounce_app/services/speech_service.dart';
 class PraticeController extends GetxController {
   final _textToSpeech = ''.obs;
   final _dictionaries = <DictionaryModel>[].obs;
+  final _ipaPhonemes = ''.obs;
   final _audioBytes = Uint8List(0).obs;
   final _filePath = ''.obs;
   final _isRecording = false.obs;
@@ -21,22 +23,29 @@ class PraticeController extends GetxController {
     nBest: [],
   ).obs;
 
-  final _record = PronounceRecord();
-
-  @override
-  void onInit() async {
-    super.onInit();
-    await _record.openAudioSession();
-  }
-
   String get textToSpeech => _textToSpeech.value;
   set textToSpeech(String value) => _textToSpeech.value = value;
 
   List<DictionaryModel> get dictionaries => _dictionaries;
-  set dictionaries(List<DictionaryModel> value) => _dictionaries.value = value;
+  set dictionaries(List<DictionaryModel> value) {
+    _dictionaries.value = value;
+
+    var phonemes = [];
+
+    dictionaries.forEach((element) {
+      var pronunciation = element.entries[0]['pronunciations']
+          .firstWhere((e) => e['context']['regions'][0] == 'United States');
+      phonemes.add(pronunciation['transcriptions'][0]['transcription']
+          .replaceAll('/', ''));
+    });
+    ipaPhonemes = phonemes.join(' ');
+  }
 
   Uint8List get audioBytes => _audioBytes.value;
   set audioBytes(Uint8List value) => _audioBytes.value = value;
+
+  String get ipaPhonemes => _ipaPhonemes.value;
+  set ipaPhonemes(String value) => _ipaPhonemes.value = value;
 
   String get filePath => _filePath.value;
   set filePath(String value) => _filePath.value = value;
@@ -65,16 +74,21 @@ class PraticeController extends GetxController {
 
   void startRecord() {
     isRecording = true;
-    _record.startRecorder();
+    PronounceRecord.startRecorder();
   }
 
   void stopRecorder() async {
-    isRecording = false;
-    isLoading = true;
-    filePath = (await _record.stopRecorder()) ?? '';
-    var result = await calculateScore(filePath: filePath);
-    recognizedData = result!;
-    isLoading = false;
+    try {
+      isRecording = false;
+      isLoading = true;
+      filePath = (await PronounceRecord.stopRecorder()) ?? '';
+      var result = await calculateScore(filePath: filePath);
+      recognizedData = result!;
+      isLoading = false;
+    } catch (e, s) {
+      PronounceError.recordError(e, s);
+      isLoading = false;
+    }
   }
 
   Future<AssessmentResponseModel?> calculateScore({

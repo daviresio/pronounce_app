@@ -2,44 +2,50 @@ import 'dart:convert';
 
 import 'package:flutter_sound/flutter_sound.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:pronounce_app/core/pronounce_error.dart';
 import 'package:pronounce_app/helpers/pronounce_file.dart';
 
 class PronounceRecord {
-  final rec = FlutterSoundRecorder();
-  String? filePath;
+  PronounceRecord._();
 
-  Future<void> openAudioSession() async {
+  static final _rec = FlutterSoundRecorder();
+  static String? _filePath;
+
+  static Future<void> openAudioSession() async {
     await checkPermissions();
-    await rec.openAudioSession();
+    try {
+      await _rec.openAudioSession();
+    } catch (e, s) {
+      PronounceError.recordError(e, s);
+    }
   }
 
-  void dispose() {
-    rec.closeAudioSession();
+  static void dispose() {
+    _rec.closeAudioSession();
   }
 
-  Future<void> startRecorder() async {
-    filePath = (await PronounceFile.generateTempFilePath()) + '.wav';
-    await rec.startRecorder(
-      toFile: filePath!,
+  static Future<void> startRecorder() async {
+    _filePath = (await PronounceFile.generateTempFilePath()) + '.wav';
+    await _rec.startRecorder(
+      toFile: _filePath!,
       codec: Codec.pcm16WAV,
     );
   }
 
-  Future<String?> stopRecorder() async {
-    await rec.stopRecorder();
-    var path = filePath;
-    filePath = null;
+  static Future<String?> stopRecorder() async {
+    await _rec.stopRecorder();
+    var path = _filePath;
+    _filePath = null;
     return path;
   }
 
-  Future<void> checkPermissions() async {
+  static Future<void> checkPermissions() async {
     if (!(await Permission.microphone.request().isGranted) ||
         !(await Permission.storage.request().isGranted)) {
-      var statuses = await [
+      await [
         Permission.microphone,
         Permission.storage,
       ].request();
-      print(statuses[Permission.microphone]);
     }
   }
 }

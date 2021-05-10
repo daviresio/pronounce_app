@@ -9,6 +9,7 @@ import 'package:get/route_manager.dart';
 import 'package:pedantic/pedantic.dart';
 import 'package:pronounce_app/core/pronounce_colors.dart';
 import 'package:pronounce_app/core/pronounce_routes.dart';
+import 'package:pronounce_app/helpers/pronounce_record.dart';
 import 'package:pronounce_app/screens/dictionary/dictionary_screen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -43,7 +44,24 @@ void main() async {
   }
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    super.initState();
+    PronounceRecord.openAudioSession();
+  }
+
+  @override
+  void dispose() {
+    PronounceRecord.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
